@@ -16,9 +16,8 @@ while True:
 sum_of_series = 0
 sign = 1
 for _ in range(m):
-    term = (n ** power) / denominator 
+    term = sign *(n ** power) / denominator 
     sum_of_series += term
-    c = True
     power = power * 2
     denominator = denominator + 2
     sign *= -1
