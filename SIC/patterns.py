@@ -6,6 +6,7 @@ for i in range(n+1):
 
 # Equilateral Triangle
 for i in range (n+1):
-      spaces = " " * (n - i)
-      stars = "*" * (2 * i - 1)
-      print(spaces + stars)
+    spaces = " " * (n - i)
+    stars = "*" * (2 * i - 1)
+    print(spaces + stars)
+
