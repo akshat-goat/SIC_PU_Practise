@@ -8,7 +8,7 @@ def prime(n):
         return True
     else :
         return False
-
+#add a function to remove the copies of the prime numbers
 
 
 number = input("Enter the Number : ")
