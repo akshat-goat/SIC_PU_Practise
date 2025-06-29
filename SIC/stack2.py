@@ -1,14 +1,14 @@
-#a Stack using a list, where elements are inserted and deleted from the rear of the list.
+#Implement Stack using list, insert and delete from front of the list
 import sys as s
 my_stack = []
 def push(n):
-    my_stack.append(n)
+    my_stack.insert(0 , n)
 
 def pop():
     if len(my_stack) == 0:
         print("Stack is empty")
     else:    
-        my_stack.pop()
+        del my_stack[0]
     #print("Removed the element : ")
 
 def display():
