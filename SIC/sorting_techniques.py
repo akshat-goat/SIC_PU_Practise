@@ -26,8 +26,28 @@ def selection_sort(given_array):
         given_array[position] = given_array[i-1]   
         given_array[i-1] = temp 
         
+def partition(array, low, high):
+    pivot = array[high]
+    k = low -1
+    for i in range(low, high):
+        if array[i] <= pivot:
+            k += 1
+            array[i], array[k] = array[k], array[i]
+    array[k+1], array[high] = array[high], array[k+1]
+    return k+1
+
+
+def quick_sort(array, low, high):
+
+    if low < high:
+        pivot_index = partition(array, low, high)
+        quick_sort(array, low, pivot_index-1)
+        quick_sort(array, pivot_index + 1, high)
 
 given_array = list(map(int,input("Enter the numbers to be sorted with spaces : ").split()))
 #bubble_sort(given_array)
-selection_sort(given_array)
+#selection_sort(given_array)
+low_index = 0
+high_index = len(given_array)-1
+quick_sort(given_array, low_index, high_index)
 print(given_array)
