@@ -9,6 +9,7 @@ def get_minimum_cost(k, costs):
     for i in range(n):
        
         current_multiplier = (i // k) + 1
+        
         total_min_cost += current_multiplier * costs[i]
 
     return total_min_cost
