@@ -1,0 +1,38 @@
+# analyze_data/analysis_referral.py
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+def generate_plot(df):
+    """
+    Visualizes C-section rates based on referral status.
+    Returns a matplotlib Figure object.
+    """
+    plt.style.use('seaborn-v0_8-talk')
+    fig, ax = plt.subplots(figsize=(10, 7))
+
+    # Calculate C-section rate by referral status
+    c_section_rates = df.groupby('Referred_From_Smaller_Facility')['Delivery_Type'].apply(lambda x: (x == 'C-section').mean() * 100).reset_index()
+    c_section_rates['Referred_From_Smaller_Facility'] = c_section_rates['Referred_From_Smaller_Facility'].map({True: 'Referred', False: 'Direct Admission'})
+
+    sns.barplot(
+        data=c_section_rates,
+        x='Referred_From_Smaller_Facility',
+        y='Delivery_Type',
+        ax=ax,
+        palette='magma'
+    )
+
+    ax.set_title('C-section Rate by Referral Status', fontsize=16, weight='bold')
+    ax.set_xlabel('Referred from Smaller Facility (True/False)', fontsize=12)
+    ax.set_ylabel('C-section Rate (%)', fontsize=12)
+    ax.set_ylim(0, max(c_section_rates['Delivery_Type']) * 1.2)
+    ax.grid(axis='y', linestyle='--', alpha=0.7)
+
+    # Add labels on bars
+    for container in ax.containers:
+        ax.bar_label(container, fmt='%.1f%%')
+
+    fig.tight_layout()
+    return fig
